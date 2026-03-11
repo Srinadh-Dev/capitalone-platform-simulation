@@ -3,7 +3,15 @@ transactions = [
     {"amount": 200.75, "month": "January"},
     {"amount": 300.00, "month": "January"},
     {"amount": 400.00, "month": "January"},
-    {"amount": 728.47, "month": "January"}
+    {"amount": 728.47, "month": "January"},
+
+    {"amount": 100.50, "month": "February"},
+    {"amount": 200.75, "month": "February"},
+    {"amount": 300.00, "month": "February"},
+    {"amount": 400.00, "month": "February"},
+    {"amount": 728.47, "month": "February"}
+    
+    
 ]
 
 def calculate_month_total(month):
@@ -12,9 +20,8 @@ def calculate_month_total(month):
 
     for txn in transactions:
         if txn["month"] == month:
-            total =+ txn["amount"]
+            total += txn["amount"]
             count += 1
-
     return total, count
 
 
