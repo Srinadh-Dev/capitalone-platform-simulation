@@ -28,9 +28,9 @@ def generate_report():
     feb_total = calculate_total(feb)
     q1_total = calculate_total(transactions)
 
-    print(f"January Total:  ${jan_total} ({len(jan)} txns)")
-    print(f"February Total: ${feb_total} ({len(feb)} txns)")
-    print(f"Q1 Total:       ${q1_total} ({len(transactions)} txns)")
+    print(f"January Total:  ${jan_total:.2f} ({len(jan)} txns)")
+    print(f"February Total: ${feb_total:.2f} ({len(feb)} txns)")
+    print(f"Q1 Total:       ${q1_total:.2f} ({len(transactions)} txns)")
 
 if __name__ == "__main__":
     generate_report()
