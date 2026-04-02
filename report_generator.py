@@ -1,41 +1,36 @@
 transactions = [
-    {"amount": 100.50, "month": "January"},
-    {"amount": 200.75, "month": "January"},
-    {"amount": 300.00, "month": "January"},
-    {"amount": 400.00, "month": "January"},
-    {"amount": 728.47, "month": "January"},
-
-    {"amount": 100.50, "month": "February"},
-    {"amount": 200.75, "month": "February"},
-    {"amount": 300.00, "month": "February"},
-    {"amount": 400.00, "month": "February"},
-    {"amount": 728.47, "month": "February"}
-    
-    
+    {"date": "2026-01-05", "amount": 200},
+    {"date": "2026-01-10", "amount": 150},
+    {"date": "2026-01-15", "amount": 300},
+    {"date": "2026-01-20", "amount": 100},
+    {"date": "2026-01-25", "amount": 250},
+    {"date": "2026-01-28", "amount": 50},
+    {"date": "2026-02-02", "amount": 180},
+    {"date": "2026-02-10", "amount": 220},
+    {"date": "2026-02-15", "amount": 130},
+    {"date": "2026-02-20", "amount": 149.72},
 ]
 
-def calculate_month_total(month):
+def calculate_total(transactions):
     total = 0
-    count = 0
-
     for txn in transactions:
-        if txn["month"] == month:
-            total += txn["amount"]
-            count += 1
-    return total, count
+        total += txn["amount"]
+    return total
 
+def filter_by_month(transactions, month):
+    return [t for t in transactions if t["date"].startswith(month)]
 
 def generate_report():
+    jan = filter_by_month(transactions, "2026-01")
+    feb = filter_by_month(transactions, "2026-02")
 
-    jan_total, jan_count = calculate_month_total("January")
-    feb_total, feb_count = calculate_month_total("February")
+    jan_total = calculate_total(jan)
+    feb_total = calculate_total(feb)
+    q1_total = calculate_total(transactions)
 
-    q1_total = jan_total + feb_total
-    q1_count = jan_count + feb_count
+    print(f"January Total:  ${jan_total:.2f} ({len(jan)} txns)")
+    print(f"February Total: ${feb_total:.2f} ({len(feb)} txns)")
+    print(f"Q1 Total:       ${q1_total:.2f} ({len(transactions)} txns)")
 
-    print(f"January Total:  ${jan_total:.2f} ({jan_count} txns)")
-    print(f"February Total: ${feb_total:.2f} ({feb_count} txns)")
-    print(f"Q1 Total:       ${q1_total:.2f} ({q1_count} txns)")
-
-
-generate_report()
+if __name__ == "__main__":
+    generate_report()
